@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
-
 class ReviewController extends Controller
 {
 
@@ -25,13 +24,20 @@ class ReviewController extends Controller
         return Review::create($request->all());
     }
 
+    public function listReviewByEmployee ()
+    {
+       $employee= Review::query()->select('employee')->distinct()->orderBy('employee')->get();
+
+       return $employee;
+    }
+
     /**
      * Display the specified resource.
      *
      * @param   $employee
      * @return \Illuminate\Http\Response
      */
-    public function show( $employee=null)
+    public function show($employee=null)
     {
 
         if($employee==null){
@@ -50,6 +56,11 @@ class ReviewController extends Controller
         }
         return \response($review,200);
 
+    }
+
+    public function index()
+    {
+        return Review::all();
     }
 
 

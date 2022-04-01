@@ -20,9 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware'=>['auth:sanctum']],function(){
 
+
+
     Route::post("review/create",[\App\Http\Controllers\ReviewController::class,'store']);
 
-    Route::get("reviews",[\App\Http\Controllers\ReviewController::class,'index']);
+
 
     Route::post("logout",[\App\Http\Controllers\AuthController::class,'logout']);
 
@@ -39,5 +41,6 @@ Route::delete("user/delete/{id}",[\App\Http\Controllers\UserController::class,'d
 
 Route::post("login",[\App\Http\Controllers\AuthController::class,'login']);
 
+Route::get('listEmployee',[\App\Http\Controllers\ReviewController::class,'listReviewByEmployee']);
 
-
+Route::get("reviews",[\App\Http\Controllers\ReviewController::class,'index']);

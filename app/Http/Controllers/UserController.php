@@ -26,12 +26,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $fields = $request->validate([
-            'name' => 'required|string',
+
             'email' => 'required|string|unique:users,email',
         ]);
 
         $user = User::create([
-            'name' => $fields['name'],
+
             'email' => $fields['email'],
         ]);
 
